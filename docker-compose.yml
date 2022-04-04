@@ -1,0 +1,15 @@
+version: '2.4'
+
+services:
+  parsedmarc:
+    container_name: "parsedmarc"
+    build:
+      context: .
+      dockerfile: parsedmarc/Dockerfile
+    command: "parsedmarc -c /etc/parsedmarc.ini"
+    tty: true
+    volumes:
+      - ./parsedmarc/parsedmarc.ini:/etc/parsedmarc.ini:z
+      #- /path/to/GeoIP:/usr/share/GeoIP
+    restart: unless-stopped
+
